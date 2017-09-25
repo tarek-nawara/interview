@@ -112,7 +112,25 @@ public interface LinkedList<T> extends Function<Integer, T>, Iterable<T> {
      */
     <U extends T> void append(U e);
 
+    /**
+     * Append multiple elements to the end of the list.
+     *
+     * @param iterable multiple elements to add.
+     */
     void appendAll(Iterable<T> iterable);
+
+    /**
+     * Reverse the underlying linked list
+     */
+    void reverse();
+
+    /**
+     * Convert the linked list to an array
+     *
+     * @param array empty array, used to get the type at runtime.
+     * @return array containing all the elements of the linked list
+     */
+    <E> E[] toArray(E[] array);
 
     /**
      * Test if the list is not empty.

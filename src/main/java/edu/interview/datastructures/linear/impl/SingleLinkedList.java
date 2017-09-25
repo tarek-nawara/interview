@@ -3,6 +3,7 @@ package edu.interview.datastructures.linear.impl;
 import edu.interview.datastructures.linear.api.LinkedList;
 
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -13,6 +14,8 @@ import java.util.function.Predicate;
  * @param <T> type of elements in the container.
  */
 public class SingleLinkedList<T> implements LinkedList<T>, Cloneable {
+
+    private java.util.LinkedList list;
 
     private class Node {
         T data;
@@ -172,6 +175,35 @@ public class SingleLinkedList<T> implements LinkedList<T>, Cloneable {
     }
 
     @Override
+    public void reverse() {
+        if (this.size == 0 || this.size == 1) return;
+        Node prev = head;
+        Node current = head.next;
+        Node next = head.next.next;
+        head.next = null;
+        while (next != null) {
+            current.next = prev;
+            prev = current;
+            current = next;
+            next = next.next;
+        }
+        current.next = prev;
+        head = current;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <E> E[] toArray(E[] array) {
+        E[] a = (E[]) java.lang.reflect.Array.newInstance(
+                array.getClass().getComponentType(), this.size);
+        int i = 0;
+        Object[] result = a;
+        for (Node x = head; x != null; x = x.next)
+            result[i++] = x.data;
+        return a;
+    }
+
+    @Override
     public T apply(Integer index) {
         assert(index >= 0);
         return this.getOrElse(index, defaultValue);
@@ -186,9 +218,43 @@ public class SingleLinkedList<T> implements LinkedList<T>, Cloneable {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Object clone() throws CloneNotSupportedException {
         LinkedList<T> cloned = (LinkedList<T>) super.clone();
         cloned.appendAll(this);
         return cloned;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SingleLinkedList<?> that = (SingleLinkedList<?>) o;
+        if (that.size != this.size) return false;
+        Iterator<?> thisIterator = this.iterator();
+        Iterator<?> otherIterator = that.iterator();
+        while (thisIterator.hasNext()) {
+            if (!thisIterator.next().equals(otherIterator.next()))
+                return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(head, tail, size, defaultValue);
+    }
+
+    @Override
+    public String toString() {
+        if (this.isEmpty()) return "[]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        Node x;
+        for (x = head; x.next != null; x = x.next){
+            sb.append(x.data).append(",");
+        }
+        sb.append(x.data).append("]");
+        return sb.toString();
     }
 }

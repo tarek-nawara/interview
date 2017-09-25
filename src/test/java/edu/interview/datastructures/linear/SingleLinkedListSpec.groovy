@@ -79,4 +79,19 @@ class SingleLinkedListSpec extends Specification {
         then: ""
         res.size() == 2
     }
+
+    def "testing reversing of list"() {
+        given: "list of elements"
+        def list = new SingleLinkedList();
+        list.appendAll([1, 2, 3, 4])
+
+        when: "reversed twice should result the same list"
+        def cloned = new SingleLinkedList()
+        cloned.appendAll(list)
+        list.reverse()
+        list.reverse()
+
+        then: ""
+        list.equals(cloned)
+    }
 }
