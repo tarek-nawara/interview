@@ -44,6 +44,16 @@ public interface ImmutableList<T> extends Function<Integer, T>, Iterable<T> {
     T getOrElse(int index, T defaultValue);
 
     /**
+     * Get the element in the list at the given index.
+     * <p>
+     *     The time complexity of this operation is O(n)
+     * </p>
+     * @param index target index
+     * @return element at this index or {@throw indexOutOfBound} exception
+     */
+    T get(int index);
+
+    /**
      * Apply a transformation function over the list.
      *
      * @param f transformation function to apply.
@@ -64,7 +74,7 @@ public interface ImmutableList<T> extends Function<Integer, T>, Iterable<T> {
      * @return a new list after applying the transformation function
      *         and flattening the list.
      */
-    <U> ImmutableList<U> flatMap(Function<? super T, ImmutableList<? extends U>> f);
+    <U> ImmutableList<U> flatMap(Function<? super T, ImmutableList<U>> f);
 
     /**
      * Append the given element to the end of the list.
@@ -80,7 +90,7 @@ public interface ImmutableList<T> extends Function<Integer, T>, Iterable<T> {
      * @param other other list to append
      * @return new list with this one at the beginning and {@code other} at the end.
      */
-    ImmutableList<T> append(ImmutableList<T> other);
+    <U extends T> ImmutableList<T> append(ImmutableList<U> other);
 
     /**
      * Get the size of the list.
@@ -111,6 +121,13 @@ public interface ImmutableList<T> extends Function<Integer, T>, Iterable<T> {
      */
     <U> U foldLeft(U zero, BiFunction<? super U, ? super T, U> reducer);
 
+    /**
+     * Convert the immutable list to an array.
+     *
+     * @param a array to get the type of the elements in the list at runtime.
+     * @return array containing the elements of the list
+     */
+    <E> E[] toArray(E[] a);
     /**
      * Test wither the list is not empty or not.
      *
