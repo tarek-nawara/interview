@@ -5,10 +5,11 @@ import java.util.Optional;
 /**
  * Interface to define the needed operations for a stack.
  * <p>
- *     All the stack operations should be O(1) time and space complexity.
+ * All the stack operations should be O(1) time and space complexity.
  * </p>
  *
  * @param <T> type of elements inside the stack
+ * @author Tarek Nawara
  */
 public interface MyStack<T> extends Iterable<T> {
 
@@ -29,7 +30,7 @@ public interface MyStack<T> extends Iterable<T> {
     /**
      * Get the top element on the stack.
      * <p>
-     *     In case empty stack will {@throw IndexOutOfBoundException}
+     * In case empty stack will {@throw IndexOutOfBoundException}
      * </p>
      *
      * @return top element on the stack.

@@ -9,10 +9,11 @@ import java.util.Optional;
 /**
  * Implementation of the stack data structure based on single linked list.
  * <p>
- *     The time and space complexity of all the operations is O(1)
+ * The time and space complexity of all the operations is O(1)
  * </p>
  *
  * @param <T> type of elements in the stack.
+ * @author Tarek Nawara
  */
 public class StackLinkedListBasedImpl<T> implements MyStack<T> {
 

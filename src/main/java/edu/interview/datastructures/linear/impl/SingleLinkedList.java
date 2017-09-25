@@ -12,6 +12,7 @@ import java.util.function.Predicate;
  * next to you.
  *
  * @param <T> type of elements in the container.
+ * @author Tarek Nawara
  */
 public class SingleLinkedList<T> implements LinkedList<T>, Cloneable {
 
@@ -78,7 +79,7 @@ public class SingleLinkedList<T> implements LinkedList<T>, Cloneable {
 
     @Override
     public <U extends T> void add(U e, int index) {
-        assert(index >= 0 && index <= size);
+        assert (index >= 0 && index <= size);
         if (index == 0) {
             this.add(e);
             return;
@@ -91,7 +92,7 @@ public class SingleLinkedList<T> implements LinkedList<T>, Cloneable {
 
     @Override
     public T remove(int index) {
-        assert(index >= 0 && index < size);
+        assert (index >= 0 && index < size);
         Node current = this.getNode(index - 1);
         T data = current.next.data;
         current.next = current.next.next;
@@ -107,7 +108,7 @@ public class SingleLinkedList<T> implements LinkedList<T>, Cloneable {
 
     @Override
     public <U extends T> T getOrElse(int index, U v) {
-        assert(index >= 0);
+        assert (index >= 0);
         if (index >= size) return v;
         Node current = this.getNode(index);
         return current.data;
@@ -205,12 +206,12 @@ public class SingleLinkedList<T> implements LinkedList<T>, Cloneable {
 
     @Override
     public T apply(Integer index) {
-        assert(index >= 0);
+        assert (index >= 0);
         return this.getOrElse(index, defaultValue);
     }
 
     private Node getNode(int index) {
-        assert(index >= 0 && index < size);
+        assert (index >= 0 && index < size);
         Node current = head;
         for (int i = 0; i < index; ++i)
             current = current.next;
@@ -251,7 +252,7 @@ public class SingleLinkedList<T> implements LinkedList<T>, Cloneable {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         Node x;
-        for (x = head; x.next != null; x = x.next){
+        for (x = head; x.next != null; x = x.next) {
             sb.append(x.data).append(",");
         }
         sb.append(x.data).append("]");

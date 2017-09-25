@@ -24,5 +24,12 @@
             <version>2.4.12</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.github.benas/random-beans -->
+        <dependency>
+            <groupId>io.github.benas</groupId>
+            <artifactId>random-beans</artifactId>
+            <version>3.7.0</version>
+        </dependency>
+
     </dependencies>
 </project>

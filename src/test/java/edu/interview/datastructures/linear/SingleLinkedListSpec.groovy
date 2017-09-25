@@ -2,7 +2,6 @@ package edu.interview.datastructures.linear
 
 import edu.interview.datastructures.linear.impl.SingleLinkedList
 import spock.lang.Specification
-import spock.lang.Unroll
 
 class SingleLinkedListSpec extends Specification {
     def "add to empty linked list should return list with size one"() {

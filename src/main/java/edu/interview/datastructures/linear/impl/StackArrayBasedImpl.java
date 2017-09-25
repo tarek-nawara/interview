@@ -9,12 +9,13 @@ import java.util.Optional;
 /**
  * Array based implementation of the stack data structure.
  * <p>
- *     In case of reaching the stack size we resize the stack
- *     by doubling its size.
- *     <t>The Amortized running time of all the operations is O(1)</t>
+ * In case of reaching the stack size we resize the stack
+ * by doubling its size.
+ * <t>The Amortized running time of all the operations is O(1)</t>
  * </p>
  *
  * @param <T> type of elements inside the stack.
+ * @author Tarek Nawara
  */
 public class StackArrayBasedImpl<T> implements MyStack<T> {
     private int capacity = 100;
@@ -24,8 +25,8 @@ public class StackArrayBasedImpl<T> implements MyStack<T> {
     /**
      * Stack Iterator.
      * <p>
-     *     This iterator copies the entire stack to protect the
-     *     iteration process from modifications of the stack at iteration time.
+     * This iterator copies the entire stack to protect the
+     * iteration process from modifications of the stack at iteration time.
      * </p>
      */
     private class StackArrayBasedImplIterator implements Iterator<T> {
@@ -56,20 +57,20 @@ public class StackArrayBasedImpl<T> implements MyStack<T> {
 
     @Override
     public T pop() {
-        assert(top >= 0);
+        assert (top >= 0);
         return (T) a[top--];
     }
 
     @Override
     public T peek() {
-        assert(top >= 0);
+        assert (top >= 0);
         return (T) a[top];
     }
 
     @Override
     public Optional<T> safePeek() {
         if (top < 0) return Optional.empty();
-        return Optional.of((T)a[top]);
+        return Optional.of((T) a[top]);
     }
 
     @Override
@@ -79,7 +80,7 @@ public class StackArrayBasedImpl<T> implements MyStack<T> {
 
     @Override
     public T get(int index) {
-        assert(index >= 0 && index <= top);
+        assert (index >= 0 && index <= top);
         return (T) a[index];
     }
 

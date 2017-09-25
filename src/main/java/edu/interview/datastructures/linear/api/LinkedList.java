@@ -6,11 +6,12 @@ import java.util.function.Predicate;
 /**
  * Interface for representing linked lists.
  * <p>
- *     Implementations of this interface must be immutable because of the covariant
- *     nature of this interface.
+ * Implementations of this interface must be immutable because of the covariant
+ * nature of this interface.
  * </p>
  *
  * @param <T> type of element inside the list
+ * @author Tarek Nawara
  */
 public interface LinkedList<T> extends Function<Integer, T>, Iterable<T> {
 
@@ -56,7 +57,7 @@ public interface LinkedList<T> extends Function<Integer, T>, Iterable<T> {
      * if the index is not valid.
      *
      * @param index target index
-     * @param v default value in case of invalid index.
+     * @param v     default value in case of invalid index.
      * @return element at the given index or default value.
      */
     <U extends T> T getOrElse(int index, U v);
@@ -78,7 +79,7 @@ public interface LinkedList<T> extends Function<Integer, T>, Iterable<T> {
     /**
      * Apply a transformation on the given list.
      *
-     * @param f transformation function
+     * @param f   transformation function
      * @param <U> the new type of the elements in the list
      * @return a new list after applying the transformation function.
      */
@@ -88,7 +89,7 @@ public interface LinkedList<T> extends Function<Integer, T>, Iterable<T> {
      * Apply a transformation over the given list, then flatten the nested
      * lists to a single list.
      *
-     * @param f transformation function.
+     * @param f   transformation function.
      * @param <U> type of the new elements after the flatting.
      * @return a new list after applying the transformation and flatting.
      */
@@ -105,7 +106,7 @@ public interface LinkedList<T> extends Function<Integer, T>, Iterable<T> {
     /**
      * Append the given value to the end of list.
      * <p>
-     *     This operation is O(1)
+     * This operation is O(1)
      * </p>
      *
      * @param e element to append
