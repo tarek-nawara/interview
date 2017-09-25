@@ -67,7 +67,7 @@ public class ConsList<T> implements ImmutableList<T> {
     }
 
     @Override
-    public <U extends T> ImmutableList<T> append(ImmutableList<U> other) {
+    public ImmutableList<T> append(ImmutableList<T> other) {
         return new ConsList<>(head, tail.append(other));
     }
 
@@ -98,9 +98,10 @@ public class ConsList<T> implements ImmutableList<T> {
         int i = 0;
         while (currentTail instanceof ConsList) {
             result[i++] = currentHead;
-            currentTail = ((ConsList<?>)currentTail).tail;
             currentHead = ((ConsList<?>)currentTail).head;
+            currentTail = ((ConsList<?>)currentTail).tail;
         }
+        result[i] = currentHead;
         return a;
     }
 

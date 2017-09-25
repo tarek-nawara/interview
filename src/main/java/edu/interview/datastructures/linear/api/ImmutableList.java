@@ -90,7 +90,7 @@ public interface ImmutableList<T> extends Function<Integer, T>, Iterable<T> {
      * @param other other list to append
      * @return new list with this one at the beginning and {@code other} at the end.
      */
-    <U extends T> ImmutableList<T> append(ImmutableList<U> other);
+    ImmutableList<T> append(ImmutableList<T> other);
 
     /**
      * Get the size of the list.
