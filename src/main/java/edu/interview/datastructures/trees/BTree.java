@@ -111,6 +111,13 @@ public class BTree<Key extends Comparable<Key>, Value> {
     public void put(Key key, Value val) {
         if (key == null) throw new IllegalArgumentException("argument key to put() is null");
         Node u = insert(root, key, val, height);
+        ++n;
+        if (u == null) return;
+        Node t = new Node(2);
+        t.children[0] = new Entry(root.children[0].key, null, root);
+        t.children[1] = new Entry(u.children[0].key, null, u);
+        root = t;
+        ++height;
     }
 
     private Node insert(Node h, Key key, Value val, int ht) {
