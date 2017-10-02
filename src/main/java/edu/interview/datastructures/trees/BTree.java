@@ -71,6 +71,14 @@ public class BTree<Key extends Comparable<Key>, Value> {
         return height;
     }
 
+    /**
+     * Return a value associated with a key.
+     *
+     * @param key the key to search for
+     * @return the value associated with the given key if the key is in the symbol table
+     *         and {@code null} if the key is not in the symbol table
+     * @throws IllegalArgumentException if {@code key} is {@code null}
+     */
     public Optional<Value> get(Key key) {
         if (key == null) throw new IllegalArgumentException("argument to get() is null");
         return search(root, key, height);
@@ -91,6 +99,15 @@ public class BTree<Key extends Comparable<Key>, Value> {
         return Optional.empty();
     }
 
+    /**
+     * Inserts the key-value pair into the symbol table, overwriting the old value
+     * with the new value if the key is already in the symbol table.
+     * If the value is {@code null} this effectively deletes the key from the symbol table.
+     *
+     * @param key the key
+     * @param val the value
+     * @throws IllegalArgumentException if {@code key} is {@code null}
+     */
     public void put(Key key, Value val) {
         if (key == null) throw new IllegalArgumentException("argument key to put() is null");
         Node u = insert(root, key, val, height);
@@ -124,6 +141,7 @@ public class BTree<Key extends Comparable<Key>, Value> {
         else return split(h);
     }
 
+    // split node to a half
     private Node split(Node h) {
         Node t = new Node(M / 2);
         h.m = M / 2;
@@ -141,6 +159,11 @@ public class BTree<Key extends Comparable<Key>, Value> {
         return a.compareTo(b) == 0;
     }
 
+    /**
+     * Returns a string representation of this B-tree (for debugging).
+     *
+     * @return a string representation of this B-tree
+     */
     @Override
     public String toString() {
         return toString(root, height, "") + "\n";
